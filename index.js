@@ -104,11 +104,9 @@ game.sprite.Base = Class.extend({
         this.sprite.interactive = true;
         this.sprite.click = (function(){
             game.shop.hit(this.x, this.y);
+            if(this.click)
+                this.click();
         }).bind(this);
-    },
-    setx: function(x) {
-        this.x = x;
-        this.sprite.position.x = x * 32;
     }
 });
 
@@ -156,24 +154,25 @@ game.sprite.Enemy = game.sprite.Base.extend({
 });
 
 game.sprite.Collect = game.sprite.Base.extend({
-    img: 'collect.png',
+    img: 'collect_sprite.png',
     type: 2,
+    upgrade: 1,
     load: function() {
         this._super();
         game.collectors++;
-    }
-});
-
-game.sprite.Attack = game.sprite.Base.extend({
-    img: 'attack.png',
-    type: 1,
-    load: function() {
-        this._super();
-        window.setTimeout(this.explode.bind(this), 1000);
+        this.sprite.width = 128;
+        this.sprite.texture.noFrame = false;
+        this.sprite.texture.frame = new PIXI.Rectangle(0, 0, 128, 128);
+        setInterval((function() {
+            if(this.sprite.texture.frame.x < 256) {
+                this.sprite.texture.frame.x += 128;
+            } else {
+                this.sprite.texture.frame.x = 0;
+            }
+        }).bind(this), 200);
     },
-    explode: function() {
-        game.sgrid.remove(this.x, this.y);
-        game.sgrid.add(new game.sprite.Floor(this.x, this.y), this.x, this.y);
+    click: function() {
+        
     }
 });
 
@@ -205,7 +204,21 @@ game.spread = {
             game.sgrid.add(new game.sprite.Enemy(x, y), x, y);
         }
     }
-};
+}
+
+// Initial draw.
+for(var i = 0; i < game.grid.length; i++) {
+    for(var j = 0; j < game.grid[0].length; j++) {
+        if(game.grid[i][j] == 0)
+            game.sgrid.add(new game.sprite.Floor(j, i), j, i);
+        if(game.grid[i][j] == 3)
+            game.sgrid.add(new game.sprite.Res(j, i), j, i);
+        if(game.grid[i][j] == 4)
+            game.sgrid.add(new game.sprite.Enemy(j, i), j, i);
+    }
+}
+
+;
 
 
 document.getElementById('next').addEventListener('click', function() {
@@ -276,17 +289,4 @@ function animate() {
     }
     requestAnimationFrame(animate);
 }
-
-// Initial draw.
-for(var i = 0; i < game.grid.length; i++) {
-    for(var j = 0; j < game.grid[0].length; j++) {
-        if(game.grid[i][j] == 0)
-            game.sgrid.add(new game.sprite.Floor(j, i), j, i);
-        if(game.grid[i][j] == 3)
-            game.sgrid.add(new game.sprite.Res(j, i), j, i);
-        if(game.grid[i][j] == 4)
-            game.sgrid.add(new game.sprite.Enemy(j, i), j, i);
-    }
-}
-
 
