@@ -191,7 +191,7 @@ loader.on('loaded', function() {
 
 loader.load();
 
-var collloader = new PIXI.SpriteSheetLoader('/img/collect.json');
+var collloader = new PIXI.SpriteSheetLoader('./img/collect.json');
 collloader.on('loaded', function() {
     game.sprite.Collect.textures = [
         PIXI.Texture.fromFrame('coll1.png'),
