@@ -1,8 +1,8 @@
 game.shop = {
     buying: false,
     costs: {
-        t1: 10,
-        t2: 80
+        t1: 60,
+        t2: 100
     },
     hit: function(x, y) {
         if( ! this.buying) {

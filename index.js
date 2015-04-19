@@ -77,7 +77,7 @@ function checkKey(e) {
 var game = {
     erupt: 0,
     sprite: {},
-    coins: 1000,
+    coins: 300,
     collectors: [],
     grid: [
         [0,0,0,0,0,0,3,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0],
