@@ -1,7 +1,7 @@
 game.shop = {
     buying: false,
     costs: {
-        t1: 60,
+        t1: 80,
         t2: 100
     },
     hit: function(x, y) {

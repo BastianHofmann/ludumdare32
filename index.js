@@ -319,7 +319,7 @@ game.sprite.Attack = Class.extend({
         var dist;
         for(var i = 0; i < enemies.length; i++) {
             dist = Math.abs(this.x - enemies[i].x) + Math.abs(this.y - enemies[i].y)
-            if(dist <= 3) {
+            if(dist <= 2) {
                 enemies[i].decrStrength(dist - 3 + 1);
             }
         }
