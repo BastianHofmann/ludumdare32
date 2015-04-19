@@ -25,8 +25,7 @@ game.shop = {
             game.coins -= this.costs['t'+this.buyingType];
 
             if(this.buyingType == 1) {
-                game.sgrid.remove(x, y);
-                game.sgrid.add(new game.sprite.Attack(x, y), x, y);
+                new game.sprite.Attack(x, y);
             }
 
             if(this.buyingType == 2) {
