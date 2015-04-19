@@ -132,7 +132,7 @@ game.sprite.Base = Class.extend({
         this.load();
     },
     load: function() {
-        this.texture = PIXI.Texture.fromImage('img/' + this.img);
+        this.texture = PIXI.Texture.fromImage('./img/' + this.img);
         this.sprite = new PIXI.Sprite(this.texture);
         this.sprite.position.x = this.x * 64 * SCALE;
         this.sprite.position.y = this.y * 64 * SCALE;
@@ -159,7 +159,7 @@ game.sprite.Res = game.sprite.Base.extend({
     type: 3
 });
 
-var loader = new PIXI.SpriteSheetLoader('/img/enemy_test.json');
+var loader = new PIXI.SpriteSheetLoader('./img/enemy_test.json');
 
 loader.on('loaded', function() {
     game.sprite.Enemy.textures = {
@@ -226,7 +226,7 @@ game.Cash = Class.extend({
             x: Math.random() * (1 - (-1)) + -1,
             y: Math.random() * (1 - (-1)) + -1,
         };
-        this.texture = PIXI.Texture.fromImage('img/res_icon.png');
+        this.texture = PIXI.Texture.fromImage('./img/res_icon.png');
         this.sprite = new PIXI.Sprite(this.texture);
         this.sprite.position.x = this.x * 64 * SCALE + 32;
         this.sprite.position.y = this.y * 64 * SCALE + 32;
@@ -284,7 +284,7 @@ game.sprite.Collect = game.sprite.Base.extend({
 
 game.sprite.Attack = Class.extend({
     blink: true,
-    textures: [PIXI.Texture.fromImage('img/bomb.png'), PIXI.Texture.fromImage('img/bg_1.png')],
+    textures: [PIXI.Texture.fromImage('./img/bomb.png'), PIXI.Texture.fromImage('./img/bg_1.png')],
     init: function(x, y) {
         this.x = x;
         this.y = y;
