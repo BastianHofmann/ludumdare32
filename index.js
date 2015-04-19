@@ -22,7 +22,7 @@ function setTickInterval(callback, milli) {
 };
 
 var canvas = document.getElementById('game');
-var SCALE = window.devicePixelRatio;
+var SCALE = 2;
 var renderer = PIXI.autoDetectRenderer(960 * SCALE, 640 * SCALE, {
     view: canvas
 });
